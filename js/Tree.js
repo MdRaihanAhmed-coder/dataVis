@@ -20,32 +20,35 @@ class Tree {
 	}
 	console.log(this.nodes);
 
-	for(let i=0;i<this.nodes.length;i++){
-		if(this.nodes[i].name === "Animal"){
-                    this.nodes[i].parentNode = null;
-                }
-                else if(this.nodes[i].name === "Sponges" || this.nodes[i].name === "Nephrozoa"){
-                      this.nodes[i].parentNode = this.nodes[0];
-                }
-                else if(this.nodes[i].name === "Calcinea" || this.nodes[i].name === "Petrosina"){
-                      this.nodes[i].parentNode = this.nodes[1];
-                }
-                else if(this.nodes[i].name === "Vertebrates" || this.nodes[i].name === "Protosomes"){
-                      this.nodes[i].parentNode = this.nodes[2];
-                }
-                else if(this.nodes[i].name === "Lampreys" ||this.nodes[i].name === "Sharks" || this.nodes[i].name === "Tetrapods" ){
-                      this.nodes[i].parentNode = this.nodes[5];
-                }
-                else if(this.nodes[i].name === "Turtles"){
-                      this.nodes[i].parentNode = this.nodes[9];
-                }
-                else if(this.nodes[i].name === "Water Bears" || this.nodes[i].name === "Hexapods"){
-                      this.nodes[i].parentNode = this.nodes[6];
-                }
-                else{
-                      this.nodes[i].parentNode = this.nodes[12];
-                }
-	}
+	//const parent_node = nodes.find(element => );	
+	this.nodes.forEach(element => element.parentNode = this.nodes.find(element2 => element.parentName === element2.name));
+	console.log(this.nodes);
+	//for(let i=0;i<this.nodes.length;i++){
+	//	if(this.nodes[i].name === "Animal"){
+        //            this.nodes[i].parentNode = null;
+        //        }
+        //        else if(this.nodes[i].name === "Sponges" || this.nodes[i].name === "Nephrozoa"){
+        //              this.nodes[i].parentNode = this.nodes[0];
+        //        }
+        //        else if(this.nodes[i].name === "Calcinea" || this.nodes[i].name === "Petrosina"){
+        //              this.nodes[i].parentNode = this.nodes[1];
+        //        }
+        //        else if(this.nodes[i].name === "Vertebrates" || this.nodes[i].name === "Protosomes"){
+        //              this.nodes[i].parentNode = this.nodes[2];
+        //        }
+        //        else if(this.nodes[i].name === "Lampreys" ||this.nodes[i].name === "Sharks" || this.nodes[i].name === "Tetrapods" ){
+        //              this.nodes[i].parentNode = this.nodes[5];
+        //        }
+        //        else if(this.nodes[i].name === "Turtles"){
+        //              this.nodes[i].parentNode = this.nodes[9];
+        //        }
+        //        else if(this.nodes[i].name === "Water Bears" || this.nodes[i].name === "Hexapods"){
+        //              this.nodes[i].parentNode = this.nodes[6];
+        //        }
+        //        else{
+        //              this.nodes[i].parentNode = this.nodes[12];
+        //        }
+	//}
   } 
 
   /**
@@ -56,7 +59,7 @@ class Tree {
 	//if(this.nodes[1].name == "Animal")
 	 // this.nodes[0].level = 0;
 	 
-	console.log(this.nodes[0].name);
+	//console.log(this.nodes[0].name);
 	var new_level = 0; 
 	var parent_name;
 
