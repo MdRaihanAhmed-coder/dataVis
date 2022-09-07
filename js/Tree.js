@@ -1,15 +1,20 @@
 /** Class representing a Tree. */
+//let permanent_pos=0;
 class Tree {
   /**
    * Creates a Tree Object
    * Populates a single attribute that contains a list (array) of Node objects to be used by the other functions in this class
    * @param {json[]} json - array of json objects with name and parent fields
    */
-  constructor(json) {
+   //let permanent_pos=0;
+   //permanent_pos=new int;
+   permanent_pos=0;
+   constructor(json) {
 	//console.log("asdfasf",json);
 	this.nodes = new Array();
 	this.nodes = json.map(N => new Node(N.name,N.parent));
-
+	
+	//let permanent_pos=0;
 
 	//this.previous_node = null;
 	//for(let i=0;i<json.length;i++){
@@ -54,6 +59,7 @@ class Tree {
 	//}
   } 
 
+  //let permanent_pos=0;
   /**
    * Assign other required attributes for the nodes.
    */
@@ -76,6 +82,7 @@ class Tree {
 
 
 	this.assignLevel(this.nodes[0],0);
+	this.assignPosition(this.nodes[0],this.permanent_pos);
 	console.log(this.nodes);
 	//var new_level = 0; 
 	//var parent_name;
@@ -160,11 +167,26 @@ class Tree {
 
   }
 
+
   /**
    * Recursive function that assign positions to each node
    */
   assignPosition (node, position) {
+	//node.position = position;
+	
+	//let pos = position;
 	node.position = position;
+	if(node.children.length != 0){
+		for(let child=0; child < node.children.length; child++){
+			if(child > 0){
+				this.permanent_pos += 1;
+				console.log("if child > 0 ",node.children[child].name,this.permanent_pos);
+			}
+			this.assignPosition(node.children[child],this.permanent_pos);
+		}
+	}
+	return node;
+
   }
 
   /**
