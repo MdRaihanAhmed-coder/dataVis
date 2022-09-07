@@ -180,7 +180,7 @@ class Tree {
 		for(let child=0; child < node.children.length; child++){
 			if(child > 0){
 				this.permanent_pos += 1;
-				console.log("if child > 0 ",node.children[child].name,this.permanent_pos);
+				//console.log("if child > 0 ",node.children[child].name,this.permanent_pos);
 			}
 			this.assignPosition(node.children[child],this.permanent_pos);
 		}
@@ -193,7 +193,108 @@ class Tree {
    * Function that renders the tree
    */
   renderTree () {
+	var width =1200;
+	var height = 1200;
+
+	var svg = d3.select("body")
+	  .append("svg")
+	  .attr("width",width)
+	  .attr("height",height);
+
+	//svg.append("line")
+	//  .attr("x1",100)
+	//  .attr("y1",50)
+	//  .attr("x2",500)
+	//  .attr("y2",50);
 	
+	//svg.append("circle")
+	//  .attr("cx",100)
+	//  .attr("cy",50)
+	//  .attr("r",50)
+	
+	//svg.append("g")
+	//  .append("circle")
+        //  .attr("cx",100)
+        //  .attr("cy",50)
+        //  .attr("r",50)
+	//  .append("text")
+	//  .attr("x",100)
+	//  .attr("y",50)
+	//  .text("ANIMAL")
+	
+	
+	//var g = svg.append("g")
+	//  .attr("class","nodeGroup")
+	//  .attr("transform", function(d,i){
+	//	  return "translate(100,50)";
+	//  });
+
+	////var g = svg.append("g")
+        ////  .attr("transform", function(d,i) => "translate(100,50)");
+	//
+	//g.append("circle")
+	//  .attr("r",40)
+	//g.append("text")
+	//  .attr("class","label")
+	//  .text("ANIMAL")
+
+
+	//var g = svg.append("g")
+        //  .attr("class","nodeGroup")
+        //  .attr("transform", function(d,i){
+        //          return "translate(300,50)";
+        //  });
+        //g.append("circle")
+        //  .attr("r",40)
+        //g.append("text")
+        //  .attr("class","label")
+        //  .text("ANIMAL")
+
+	//var g = svg.append("g")
+        //  .attr("class","nodeGroup")
+        //  .attr("transform", function(d,i){
+        //          return "translate(500,50)";
+        //  });
+        //g.append("circle")
+        //  .attr("r",40)
+        //g.append("text")
+        //  .attr("class","label")
+        //  .text("ANIMAL")
+	
+	for(let i=1; i<this.nodes.length;i++){
+                let x2 = (this.nodes[i].level*200)+100;
+                let y2 = (this.nodes[i].position*150)+50;
+                let x1 = (this.nodes[i].parentNode.level * 200) + 100;
+                let y1 = (this.nodes[i].parentNode.position * 150) + 50;
+
+                svg.append("line")
+                 .attr("x1",x1)
+                 .attr("y1",y1)
+                 .attr("x2",x2)
+                 .attr("y2",y2);
+
+        }
+
+	for(let i=0; i<this.nodes.length;i++){
+		let cx = (this.nodes[i].level*200)+100;
+		let cy = (this.nodes[i].position*150)+50;
+		//console.log(cx,cy);
+
+		let g = svg.append("g")
+        	  .attr("class","nodeGroup")
+        	  .attr("transform", function(d,i){
+        	          return "translate("+cx+","+cy+")";
+        	  });
+        	g.append("circle")
+        	  .attr("r",50);
+        	g.append("text")
+        	  .attr("class","label")
+        	  .text(this.nodes[i].name.toUpperCase());
+
+
+	}
+
+
   }
 
 }
