@@ -1,5 +1,4 @@
 /** Class representing a Tree. */
-//let permanent_pos=0;
 class Tree {
   /**
    * Creates a Tree Object
@@ -60,7 +59,7 @@ class Tree {
 	
 	node.level = level;
 	console.log(node.name,node.level);
-	if(node.children.length != 0){
+	if(node.children.length !== 0){
 		//console.log("children");
 		
 		//this.assignLevel(node.children[0],level+1);
@@ -85,7 +84,7 @@ class Tree {
 	
 	//let pos = position;
 	node.position = position;
-	if(node.children.length != 0){
+	if(node.children.length !== 0){
 		for(let child=0; child < node.children.length; child++){
 			if(child > 0){
 				this.permanent_pos += 1;
@@ -111,13 +110,13 @@ class Tree {
 	  .attr("height",height);
 	  
 	let lines = svg.selectAll("line")
-		  .data(this.nodes.filter((d,i) => (i!=0) ? d : null));
+		  .data(this.nodes.filter((d,i) => (i!==0) ? d : null));
 	lines.join("line")
 		.attr("x1", (d,i) => (d.parentNode.level * 200) + 100)
           	.attr("y1", (d,i) => (d.parentNode.position * 150) + 50)
           	.attr("x2", (d,i) => (d.level*200)+100)
           	.attr("y2", (d,i) => (d.position*150)+50);
-
+	
 	
 	let elem = svg.selectAll("g")
 	  		.data(this.nodes);
@@ -134,13 +133,22 @@ class Tree {
 	elemEnter.append("text")
                      .attr("class","label")
                      .text(d => d.name.toUpperCase());
+/*	
+/// tests
+	let elem = svg.selectAll("g")
+                        .data(this.nodes);
+			.join("g")
 
+	elem.append("circle")
+                 .attr("r",50)
+	elem.append()	
+*/
 
 	//svg.data(this.nodes.filter(function(d,n){
 	//  console.log(d.name,n);
 	//}));
 	//
-	//let c = svg.data(this.nodes.filter((d,i) => i!=0 ? console.log("c: ",d,i):null));	
+	//let c = svg.data(this.nodes.filter((d,i) => i!==0 ? console.log("c: ",d,i):null));	
 	
 	
 /* previously tried using for loop which worked*/	/*
