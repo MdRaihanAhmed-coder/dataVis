@@ -15,48 +15,10 @@ class Tree {
 	this.nodes = json.map(N => new Node(N.name,N.parent));
 	
 	//let permanent_pos=0;
-
-	//this.previous_node = null;
-	//for(let i=0;i<json.length;i++){
-	//	let new_node = new Node(json[i].name,json[i].parent);
-	//	new_node.parentNode = this.previous_node;
-	//	//this.nodes.push(new_node);
-	//	//this.previous_node = new_node;
-	//	//console.log(new_node.parentNode);
-
-	//	this.nodes.push(new_node);
-	//}
 	console.log(this.nodes);
 
-	//const parent_node = nodes.find(element => );	
 	this.nodes.forEach(element => element.parentNode = this.nodes.find(element2 => element.parentName === element2.name));
 	console.log(this.nodes);
-	//for(let i=0;i<this.nodes.length;i++){
-	//	if(this.nodes[i].name === "Animal"){
-        //            this.nodes[i].parentNode = null;
-        //        }
-        //        else if(this.nodes[i].name === "Sponges" || this.nodes[i].name === "Nephrozoa"){
-        //              this.nodes[i].parentNode = this.nodes[0];
-        //        }
-        //        else if(this.nodes[i].name === "Calcinea" || this.nodes[i].name === "Petrosina"){
-        //              this.nodes[i].parentNode = this.nodes[1];
-        //        }
-        //        else if(this.nodes[i].name === "Vertebrates" || this.nodes[i].name === "Protosomes"){
-        //              this.nodes[i].parentNode = this.nodes[2];
-        //        }
-        //        else if(this.nodes[i].name === "Lampreys" ||this.nodes[i].name === "Sharks" || this.nodes[i].name === "Tetrapods" ){
-        //              this.nodes[i].parentNode = this.nodes[5];
-        //        }
-        //        else if(this.nodes[i].name === "Turtles"){
-        //              this.nodes[i].parentNode = this.nodes[9];
-        //        }
-        //        else if(this.nodes[i].name === "Water Bears" || this.nodes[i].name === "Hexapods"){
-        //              this.nodes[i].parentNode = this.nodes[6];
-        //        }
-        //        else{
-        //              this.nodes[i].parentNode = this.nodes[12];
-        //        }
-	//}
   } 
 
   //let permanent_pos=0;
@@ -65,8 +27,7 @@ class Tree {
    */
   buildTree () {
     // note: in this function you will assign positions and levels by making calls to assignPosition() and assignLevel()
-	//if(this.nodes[1].name == "Animal")
-	 // this.nodes[0].level = 0;
+	
 	//this.nodes.forEach(node => node.children.push(this.nodes.find(child => child.parentName === node.name))); 
 	//console.log(this.nodes);
 	
@@ -84,61 +45,9 @@ class Tree {
 	this.assignLevel(this.nodes[0],0);
 	this.assignPosition(this.nodes[0],this.permanent_pos);
 	console.log(this.nodes);
-	//var new_level = 0; 
-	//var parent_name;
+	//let new_level = 0; 
+	//let parent_name;
 
-	//for(let i=0;i<this.nodes.length;i++){
-	//	//assignPosition(nodes[i],nodes[i].parent);
-	//	//console.log(this.nodes[i].name);
-	//	if(this.nodes[i].name == "Animal"){
-	//		this.assignLevel(this.nodes[i],0);
-	//		console.log(this.nodes[i].name,i);
-	//		//this.nodes[i].level = 0;
-	//		//parent_name = this.nodes[i].name;
-	//	}
-	//	else{
-	//		if(this.nodes[i].parentName != parent_name){
-	//			parent_name = this.nodes[i].parentName;
-	//		//	console.log(this.nodes[i].name,parent_name, this.nodes[i].parentNode.level);
-	//			new_level = this.nodes[i].parentNode.level+1;
-	//			//console.log(parent_name,this.nodes[i].name,level);
-	//		}
-	//		console.log(parent_name,this.nodes[i].name,new_level);
-	//		console.log(this.nodes[2].name, this.nodes[2].level);
-	//		this.assignLevel(this.nodes[i],new_level);
-	//	}
-	//	
-	//	
-	//	if(this.nodes[i].name === "Animal"){
-	//		this.assignPosition(this.nodes[i],0);
-	//	}
-        //        else if(this.nodes[i].name === "Sponges" || this.nodes[i].name === "Calcinea"){
-        //         	this.assignPosition(this.nodes[i],0);
-        //        }
-        //        else if(this.nodes[i].name === "Petrosina"){
-        //            this.assignPosition(this.nodes[i],1)
-        //        }
-        //        else if(this.nodes[i].name === "Vertebrates" || this.nodes[i].name === "Nephrozoa" || this.nodes[i].name === "Lampreys"){
-        //        	this.assignPosition(this.nodes[i],2);
-	//	}
-        //        else if(this.nodes[i].name === "Sharks"){
-        //        	this.assignPosition(this.nodes[i],3);
-	//	}
-        //        else if(this.nodes[i].name === "Turtles" || this.nodes[i].name === "Tetrapods"){
-	//		 this.assignPosition(this.nodes[i],4);
-        //        }
-        //        else if(this.nodes[i].name === "Water Bears" || this.nodes[i].name === "Protosomes"){
-        //        	this.assignPosition(this.nodes[i],5);
-	//	}
-        //        else if(this.nodes[i].name === "Hexapods" || this.nodes[i].name === "Insects"){
-        //        	this.assignPosition(this.nodes[i],6);
-	//	}
-	//	else{
-	//		this.assignPosition(this.nodes[i],7);
-	//	}
-
-
-	//}
  
   }
 
@@ -193,74 +102,48 @@ class Tree {
    * Function that renders the tree
    */
   renderTree () {
-	var width =1200;
-	var height = 1200;
+	let width =1200;
+	let height = 1200;
 
-	var svg = d3.select("body")
+	let svg = d3.select("body")
 	  .append("svg")
 	  .attr("width",width)
 	  .attr("height",height);
+	  
+	let lines = svg.selectAll("line")
+		  .data(this.nodes.filter((d,i) => (i!=0) ? d : null));
+	lines.join("line")
+		.attr("x1", (d,i) => (d.parentNode.level * 200) + 100)
+          	.attr("y1", (d,i) => (d.parentNode.position * 150) + 50)
+          	.attr("x2", (d,i) => (d.level*200)+100)
+          	.attr("y2", (d,i) => (d.position*150)+50);
 
-	//svg.append("line")
-	//  .attr("x1",100)
-	//  .attr("y1",50)
-	//  .attr("x2",500)
-	//  .attr("y2",50);
 	
-	//svg.append("circle")
-	//  .attr("cx",100)
-	//  .attr("cy",50)
-	//  .attr("r",50)
+	let elem = svg.selectAll("g")
+	  		.data(this.nodes);
 	
-	//svg.append("g")
-	//  .append("circle")
-        //  .attr("cx",100)
-        //  .attr("cy",50)
-        //  .attr("r",50)
-	//  .append("text")
-	//  .attr("x",100)
-	//  .attr("y",50)
-	//  .text("ANIMAL")
+	let elemEnter = elem.enter()
+	  			.append("g")
+	  			.attr("class","nodeGroup")
+                		.attr("transform", function(d,i){
+                        		return "translate("+((d.level*200)+100)+","+((d.position*150)+50)+")";
+				});
 	
-	
-	//var g = svg.append("g")
-	//  .attr("class","nodeGroup")
-	//  .attr("transform", function(d,i){
-	//	  return "translate(100,50)";
-	//  });
+	let circles = elemEnter.append("circle")
+	  			.attr("r",50)
+	elemEnter.append("text")
+                     .attr("class","label")
+                     .text(d => d.name.toUpperCase());
 
-	////var g = svg.append("g")
-        ////  .attr("transform", function(d,i) => "translate(100,50)");
+
+	//svg.data(this.nodes.filter(function(d,n){
+	//  console.log(d.name,n);
+	//}));
 	//
-	//g.append("circle")
-	//  .attr("r",40)
-	//g.append("text")
-	//  .attr("class","label")
-	//  .text("ANIMAL")
-
-
-	//var g = svg.append("g")
-        //  .attr("class","nodeGroup")
-        //  .attr("transform", function(d,i){
-        //          return "translate(300,50)";
-        //  });
-        //g.append("circle")
-        //  .attr("r",40)
-        //g.append("text")
-        //  .attr("class","label")
-        //  .text("ANIMAL")
-
-	//var g = svg.append("g")
-        //  .attr("class","nodeGroup")
-        //  .attr("transform", function(d,i){
-        //          return "translate(500,50)";
-        //  });
-        //g.append("circle")
-        //  .attr("r",40)
-        //g.append("text")
-        //  .attr("class","label")
-        //  .text("ANIMAL")
+	//let c = svg.data(this.nodes.filter((d,i) => i!=0 ? console.log("c: ",d,i):null));	
 	
+	
+/* previously tried using for loop which worked*/	/*
 	for(let i=1; i<this.nodes.length;i++){
                 let x2 = (this.nodes[i].level*200)+100;
                 let y2 = (this.nodes[i].position*150)+50;
@@ -293,7 +176,7 @@ class Tree {
 
 
 	}
-
+*/
 
   }
 
